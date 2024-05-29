@@ -1,4 +1,6 @@
-﻿namespace INNOBRA_FE
+﻿using System.Windows.Forms;
+
+namespace INNOBRA_FE
 {
     partial class FrmBase
     {
@@ -30,14 +32,16 @@
         {
             this.PanelBarraTitulo = new System.Windows.Forms.Panel();
             this.btnMinimizar = new System.Windows.Forms.Button();
+            this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.PanelBarraTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelBarraTitulo
             // 
-            this.PanelBarraTitulo.BackColor = System.Drawing.Color.DarkOrchid;
+            this.PanelBarraTitulo.BackColor = System.Drawing.Color.FromArgb(12, 25, 67);
             this.PanelBarraTitulo.Controls.Add(this.btnMinimizar);
+            this.PanelBarraTitulo.Controls.Add(this.btnMaximizar);
             this.PanelBarraTitulo.Controls.Add(this.btnCerrar);
             this.PanelBarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelBarraTitulo.Location = new System.Drawing.Point(0, 0);
@@ -57,14 +61,34 @@
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Font = new System.Drawing.Font("Verdana", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimizar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMinimizar.Location = new System.Drawing.Point(716, 0);
+            this.btnMinimizar.Location = new System.Drawing.Point(674, 0);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(42, 34);
-            this.btnMinimizar.TabIndex = 1;
+            this.btnMinimizar.TabIndex = 2;
             this.btnMinimizar.Text = "_";
             this.btnMinimizar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnMinimizar.UseVisualStyleBackColor = false;
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
+            // 
+            // btnMaximizar
+            // 
+            this.btnMaximizar.BackColor = System.Drawing.Color.Transparent;
+            this.btnMaximizar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMaximizar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMaximizar.FlatAppearance.BorderSize = 0;
+            this.btnMaximizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.btnMaximizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximizar.Font = new System.Drawing.Font("Verdana", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaximizar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnMaximizar.Location = new System.Drawing.Point(716, 0);
+            this.btnMaximizar.Name = "btnMaximizar";
+            this.btnMaximizar.Size = new System.Drawing.Size(42, 34);
+            this.btnMaximizar.TabIndex = 1;
+            this.btnMaximizar.Text = "□";
+            this.btnMaximizar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMaximizar.UseVisualStyleBackColor = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // btnCerrar
             // 
@@ -89,6 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(250, 181, 30);
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.PanelBarraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -103,7 +128,8 @@
         #endregion
 
         public System.Windows.Forms.Button btnCerrar;
-        public System.Windows.Forms.Button btnMinimizar;
+        public System.Windows.Forms.Button btnMaximizar;
         public System.Windows.Forms.Panel PanelBarraTitulo;
+        public System.Windows.Forms.Button btnMinimizar;
     }
 }

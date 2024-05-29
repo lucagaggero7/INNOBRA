@@ -35,6 +35,18 @@ namespace INNOBRA_FE
             this.WindowState = FormWindowState.Minimized;
         }
 
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
         //Este conjunto de metodos y variables permiten arrastrar el formulario
         // debido a que la title bar original fue borrada y remplazada por una custom
         //
@@ -52,6 +64,8 @@ namespace INNOBRA_FE
         {
 
         }
+
+        
         //
 
     }

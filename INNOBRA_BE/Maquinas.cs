@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace INNOBRA_BE
 {
-    public class Empleados
+    public class Maquinas
     {
        
 
@@ -20,13 +20,13 @@ namespace INNOBRA_BE
 
         //Crea la Estructura de la Lista de alumnos
         //
-        public Empleados()
+        public Maquinas()
         {
-            ListaDT.TableName = "ListaEmpleados";
+            ListaDT.TableName = "ListaMaquinas";
             ListaDT.Columns.Add("Id", typeof(int));
-            ListaDT.Columns.Add("Nombre");
-            ListaDT.Columns.Add("Apellido");
-            ListaDT.Columns.Add("Cargo");
+            ListaDT.Columns.Add("Marca");
+            ListaDT.Columns.Add("Modelo");
+            ListaDT.Columns.Add("Descripcion");
             ListaDT.Columns.Add("Obra");
 
             LeerArchivo();
@@ -36,31 +36,31 @@ namespace INNOBRA_BE
         //
         public void LeerArchivo()
         {
-            if (System.IO.File.Exists("Empleados.xml"))
+            if (System.IO.File.Exists("Maquinas.xml"))
             {
-                ListaDT.ReadXml("Empleados.xml");
+                ListaDT.ReadXml("Maquinas.xml");
             }
         }
 
         // Inserta un nuevo alumno en la lista de alumnos y luego escribe esta lista en el archivo Alumnos.xml
         //
-        public void InsertEmpleado(Empleado aEmpleado)
+        public void InsertMaquina(Maquina aMaquina)
         {
             int id = NuevoId();
 
             ListaDT.Rows.Add(); //agrego renglon vacio
             int NuevoRenglon = ListaDT.Rows.Count - 1;
             ListaDT.Rows[NuevoRenglon]["Id"] = id;
-            ListaDT.Rows[NuevoRenglon]["Nombre"] = aEmpleado.Nombre;
-            ListaDT.Rows[NuevoRenglon]["Apellido"] = aEmpleado.Apellido;
-            ListaDT.Rows[NuevoRenglon]["Cargo"] = aEmpleado.Cargo;
-            ListaDT.Rows[NuevoRenglon]["Obra"] = aEmpleado.Obra;
+            ListaDT.Rows[NuevoRenglon]["Marca"] = aMaquina.Marca;
+            ListaDT.Rows[NuevoRenglon]["Modelo"] = aMaquina.Modelo;
+            ListaDT.Rows[NuevoRenglon]["Descripcion"] = aMaquina.Descripcion;
+            ListaDT.Rows[NuevoRenglon]["Obra"] = aMaquina.Obra;
 
-            ListaDT.WriteXml("Empleados.xml");
+            ListaDT.WriteXml("Maquinas.xml");
         }
 
 
-        public bool BorrarEmpleado(string txtId)
+        public bool BorrarMaquina(string txtId)
         {
             bool existe = false;
             ListaDT.AcceptChanges();
@@ -70,7 +70,7 @@ namespace INNOBRA_BE
                 if (txtId == (row["Id"].ToString()))
                 {
                     row.Delete();
-                    ListaDT.WriteXml("Empleados.xml");
+                    ListaDT.WriteXml("Maquinas.xml");
                     existe = true;
                 }
             }
@@ -78,7 +78,7 @@ namespace INNOBRA_BE
             return existe;
         }
 
-        public bool ExisteEmpleado(string txtId)
+        public bool ExisteMaquina(string txtId)
         {
             bool existe = false;
             foreach (DataRow row in ListaDT.Rows)
@@ -92,7 +92,7 @@ namespace INNOBRA_BE
 
         }
 
-        public int BuscarEmpleado(string txtId)
+        public int BuscarMaquina(string txtId)
         {
             int index = 0;
             foreach (DataRow row in ListaDT.Rows)

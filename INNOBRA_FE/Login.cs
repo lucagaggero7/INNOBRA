@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using INNOBRA_FE;
 using Microsoft.Win32;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 
 namespace INNOBRA_FE
@@ -25,12 +26,13 @@ namespace INNOBRA_FE
         public Login()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
 
         public void Login_Load(object sender, EventArgs e)
         {
-           
+
         }
 
 
@@ -44,10 +46,20 @@ namespace INNOBRA_FE
             // para permitir el login y dar paso al siguiente formulario
             if (txtNombredeusuario.Text == "admin" && txtContraseña.Text == "admin")
             {
-                Pantalla frm1 = new Pantalla();
-                this.AddOwnedForm(frm1);
-                frm1.Show();
+                Pantalla frm2 = new Pantalla();
+                this.AddOwnedForm(frm2);
+                if(this.WindowState == FormWindowState.Maximized)
+                {
+                    frm2.WindowState = FormWindowState.Maximized;
+                    frm2.Show();
+                }
+                else
+                {
+                    frm2.WindowState = FormWindowState.Normal;
+                    frm2.Show();
+                }
                 this.Hide();
+
 
                 if (chkRecordar.Checked == false)
                 {
@@ -126,10 +138,69 @@ namespace INNOBRA_FE
             txtNombredeusuario.ForeColor = Color.Black;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void txtNombredeusuario_KeyDown(object sender, KeyEventArgs e)
         {
+            nombredeusuarioclick++;
 
+            if (nombredeusuarioclick >= 1 && txtNombredeusuario.Text == "Nombre de usuario")
+            {
+                txtNombredeusuario.Text = "";
+            }
+            else
+            {
+                return;
+            }
         }
+
+        private void txtContraseña_KeyDown(object sender, KeyEventArgs e)
+        {
+            contraseñaclick++;
+
+            if (contraseñaclick >= 1 && txtContraseña.Text == "Contraseña")
+            {
+                txtContraseña.Text = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void txtNombredeusuario_Leave(object sender, EventArgs e)
+        {
+            if (txtNombredeusuario.Text == "")
+            {
+                txtNombredeusuario.Text = "Nombre de usuario";
+                txtNombredeusuario.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void txtContraseña_Leave(object sender, EventArgs e)
+        {
+            if (txtContraseña.Text == "")
+            {
+                txtContraseña.Text = "Contraseña";
+                txtContraseña.ForeColor = Color.LightGray;
+                txtContraseña.PasswordChar = '\0';
+            }
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+            //Ejecutamos los evenetos leave para ahorrar lineas if
+            txtNombredeusuario_Leave(sender, e);
+            txtContraseña_Leave(sender, e);
+            //
+
+            //Sacamos el foco de los textbox para no generar bugs del cursor
+            labelBienvenido.Focus();
+            //
+        }
+
+
+
     }
+
+
 
 }
